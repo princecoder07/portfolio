@@ -76,7 +76,7 @@ const resumeData = {
       tech: "Power BI, Python, SQL",
       period: "2025",
       description: "Interactive dashboard analyzing global pandemic trends, mortality rates, and recovery statistics across countries with real-time data visualization.",
-      image: "/covid-19.png"
+      image: "/Covid-19.png"
     },
     {
       name: "Olympic Sports Dashboard",
@@ -97,7 +97,7 @@ const resumeData = {
       tech: "Power BI, SQL, Excel",
       period: "2025",
       description: "Dynamic IPL dashboard showcasing team performance, player statistics, run rates, and season-wise comparisons with interactive filters.",
-      image: "/IPL Project.png"
+      image: "/IPL project.png"
     },
     {
       name: "Credit Card User Churn Prediction",
