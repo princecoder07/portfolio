@@ -322,54 +322,55 @@ function Navigation({ theme, setTheme }: { theme: string, setTheme: (theme: stri
 // Hero Section
 function Hero({ theme }: { theme: string }) {
   return (
-    <section id="home" className="min-h-[calc(100vh-60px)] md:min-h-screen relative overflow-hidden flex items-center justify-center">
-      {theme === 'dark' && <AnimatedBackground />}
-      {theme === 'dark' && <Particles />}
+    <section id="home" className="min-h-screen relative overflow-hidden flex items-center justify-center">
+      {/* Background - only on desktop for dark theme */}
+      {theme === 'dark' && <div className="hidden md:block"><AnimatedBackground /></div>}
+      {theme === 'dark' && <div className="hidden md:block"><Particles /></div>}
       
       <div className={`absolute inset-0 ${theme === 'dark' ? 'bg-[radial-gradient(circle_at_center,transparent_0%,#050505_70%)]' : 'bg-[radial-gradient(circle_at_center,transparent_0%,#f1f5f9_70%)]'}`} />
       
       <div 
-        className="relative z-10 px-6 max-w-6xl mx-auto w-full overflow-visible"
+        className="relative z-10 px-4 md:px-6 max-w-6xl mx-auto w-full overflow-visible"
       >
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center min-h-[calc(100vh-80px)] md:min-h-screen py-8 md:py-24">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-12 items-center py-6 md:py-24">
           {/* Left Side - Text */}
           <div
-            className="text-center md:text-left"
+            className="text-center md:text-left order-2 md:order-1"
           >
             <div
-              className={`inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 ${theme === 'dark' ? 'glass' : 'bg-white shadow-lg border border-gray-200'}`}
+              className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-4 ${theme === 'dark' ? 'glass' : 'bg-white shadow-lg border border-gray-200'}`}
             >
-              <Sparkles className={`w-4 h-4 ${theme === 'dark' ? 'text-gradient-sunset' : 'text-orange-500'}`} />
-              <span className={`text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-800 font-medium'}`}>Available for opportunities</span>
+              <Sparkles className={`w-3 h-3 ${theme === 'dark' ? 'text-gradient-sunset' : 'text-orange-500'}`} />
+              <span className={`text-xs md:text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-800 font-medium'}`}>Available for opportunities</span>
             </div>
 
             <h1 
-              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4"
+              className="text-3xl md:text-6xl lg:text-7xl font-bold mb-3"
             >
               <span className={theme === 'dark' ? 'text-white' : 'text-gray-900'}>Hi, I'm </span>
-              <span className={`block mt-2 ${theme === 'dark' ? 'text-gradient-sunset' : 'text-blue-600'}`}>{resumeData.name}</span>
+              <span className={`block mt-1 ${theme === 'dark' ? 'text-gradient-sunset' : 'text-blue-600'}`}>{resumeData.name}</span>
             </h1>
 
             <p 
-              className={`text-lg md:text-2xl mb-5 font-medium ${theme === 'dark' ? 'text-gray-300' : 'text-gray-800'}`}
+              className={`text-base md:text-2xl mb-4 font-medium ${theme === 'dark' ? 'text-gray-300' : 'text-gray-800'}`}
             >
-              {resumeData.title} | Helping Businesses Make Data-Driven Decisions <span className="text-primary"></span>
+              {resumeData.title} | Helping Businesses Make Data-Driven Decisions
             </p>
 
             <p 
-              className={`mb-6 max-w-lg font-medium ${theme === 'dark' ? 'text-gray-400' : 'text-gray-700'}`}
+              className={`mb-4 text-sm md:text-base font-medium ${theme === 'dark' ? 'text-gray-400' : 'text-gray-700'}`}
             >
               {resumeData.summary}
             </p>
 
             {/* CTA Buttons */}
             <div
-              className="flex flex-wrap gap-4 justify-center md:justify-start"
+              className="flex flex-wrap gap-3 justify-center md:justify-start"
             >
-              <a href="#contact" className="px-8 py-3 bg-gradient-to-r from-vibrant-pink to-vibrant-purple rounded-full font-semibold hover:opacity-90 transition-opacity glow-rainbow">
+              <a href="#contact" className="px-6 py-2.5 text-sm bg-gradient-to-r from-vibrant-pink to-vibrant-purple rounded-full font-semibold hover:opacity-90 transition-opacity">
                 Get In Touch
               </a>
-              <a href="#projects" className={`px-8 py-3 border rounded-full font-semibold transition-colors ${theme === 'dark' ? 'border-vibrant-cyan text-vibrant-cyan hover:bg-vibrant-cyan/10' : 'border-blue-500 text-blue-600 hover:bg-blue-50'}`}>
+              <a href="#projects" className={`px-6 py-2.5 text-sm border rounded-full font-semibold transition-colors ${theme === 'dark' ? 'border-vibrant-cyan text-vibrant-cyan hover:bg-vibrant-cyan/10' : 'border-blue-500 text-blue-600 hover:bg-blue-50'}`}>
                 View Projects
               </a>
             </div>
@@ -377,11 +378,11 @@ function Hero({ theme }: { theme: string }) {
 
           {/* Right Side - Photo */}
           <div
-            className="flex justify-center mt-6 md:mt-0"
+            className="flex justify-center order-1 md:order-2 mb-4 md:mb-0"
           >
             <div className="relative">
               <div className={`absolute inset-0 rounded-full blur-xl opacity-50 ${theme === 'dark' ? 'bg-gradient-to-br from-vibrant-pink via-vibrant-purple to-vibrant-cyan' : 'bg-gradient-to-br from-blue-400 via-indigo-500 to-purple-500'}`} />
-              <div className={`relative w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 ${theme === 'dark' ? 'border-white/10' : 'border-gray-200'}`}>
+              <div className={`relative w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 ${theme === 'dark' ? 'border-white/10' : 'border-gray-200'}`}>
                 <img 
                   src="/photo.jpeg" 
                   alt={resumeData.name} 
