@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: 'Prince Kumar | Data Analyst Portfolio',
   description: 'Data Analyst with expertise in SQL, Python, Power BI, and Tableau. Transforming data into insights.',
   keywords: 'Data Analyst, SQL, Python, Power BI, Tableau, Data Science, Prince Kumar',
-  author: 'Prince Kumar',
+  authors: [{ name: 'Prince Kumar' }],
   openGraph: {
     title: 'Prince Kumar | Data Analyst Portfolio',
     description: 'Data Analyst with expertise in SQL, Python, Power BI, and Tableau',
