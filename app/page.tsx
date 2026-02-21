@@ -323,15 +323,16 @@ function Navigation({ theme, setTheme }: { theme: string, setTheme: (theme: stri
 function Hero({ theme }: { theme: string }) {
   return (
     <section id="home" className="min-h-[calc(100vh-60px)] md:min-h-screen relative overflow-hidden flex items-center justify-center">
-      {theme === 'dark' && <AnimatedBackground />}
-      {theme === 'dark' && <Particles />}
+      {/* Simplified background for mobile */}
+      {theme === 'dark' && <div className="hidden md:block"><AnimatedBackground /></div>}
+      {theme === 'dark' && <div className="hidden md:block"><Particles /></div>}
       
       <div className={`absolute inset-0 ${theme === 'dark' ? 'bg-[radial-gradient(circle_at_center,transparent_0%,#050505_70%)]' : 'bg-[radial-gradient(circle_at_center,transparent_0%,#f1f5f9_70%)]'}`} />
       
       <motion.div 
         className="relative z-10 px-6 max-w-6xl mx-auto w-full overflow-visible"
       >
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center min-h-[calc(100vh-80px)] md:min-h-screen py-12 md:py-24">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center min-h-[calc(100vh-80px)] md:min-h-screen py-8 md:py-24">
           {/* Left Side - Text */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -353,7 +354,7 @@ function Hero({ theme }: { theme: string }) {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4"
             >
               <span className={theme === 'dark' ? 'text-white' : 'text-gray-900'}>Hi, I'm </span>
               <span className={`block mt-2 ${theme === 'dark' ? 'text-gradient-sunset' : 'text-blue-600'}`}>{resumeData.name}</span>
@@ -363,7 +364,7 @@ function Hero({ theme }: { theme: string }) {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className={`text-xl md:text-2xl mb-6 font-medium ${theme === 'dark' ? 'text-gray-300' : 'text-gray-800'}`}
+              className={`text-lg md:text-2xl mb-5 font-medium ${theme === 'dark' ? 'text-gray-300' : 'text-gray-800'}`}
             >
               {resumeData.title} | Helping Businesses Make Data-Driven Decisions <span className="text-primary"></span>
             </motion.p>
@@ -372,7 +373,7 @@ function Hero({ theme }: { theme: string }) {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className={`mb-8 max-w-lg font-medium ${theme === 'dark' ? 'text-gray-400' : 'text-gray-700'}`}
+              className={`mb-6 max-w-lg font-medium ${theme === 'dark' ? 'text-gray-400' : 'text-gray-700'}`}
             >
               {resumeData.summary}
             </motion.p>
@@ -398,11 +399,12 @@ function Hero({ theme }: { theme: string }) {
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, type: 'spring', stiffness: 200, damping: 20 }}
-            className="flex justify-center mt-8 md:mt-0"
+            className="flex justify-center mt-6 md:mt-0"
           >
             <div className="relative">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-vibrant-pink via-vibrant-purple to-vibrant-cyan blur-xl opacity-50 animate-pulse" />
-              <div className={`relative w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 ${theme === 'dark' ? 'border-white/10' : 'border-gray-200'} glow-rainbow`}>
+              {/* Simplified glow for mobile */}
+              <div className={`absolute inset-0 rounded-full blur-xl opacity-50 ${theme === 'dark' ? 'bg-gradient-to-br from-vibrant-pink via-vibrant-purple to-vibrant-cyan animate-pulse' : 'bg-gradient-to-br from-blue-400 via-indigo-500 to-purple-500'}`} />
+              <div className={`relative w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 ${theme === 'dark' ? 'border-white/10' : 'border-gray-200'} glow-rainbow`}>
                 <img 
                   src="/photo.jpeg" 
                   alt={resumeData.name} 
