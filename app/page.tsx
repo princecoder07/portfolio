@@ -323,66 +323,47 @@ function Navigation({ theme, setTheme }: { theme: string, setTheme: (theme: stri
 function Hero({ theme }: { theme: string }) {
   return (
     <section id="home" className="min-h-[calc(100vh-60px)] md:min-h-screen relative overflow-hidden flex items-center justify-center">
-      {/* Simplified background for mobile */}
-      {theme === 'dark' && <div className="hidden md:block"><AnimatedBackground /></div>}
-      {theme === 'dark' && <div className="hidden md:block"><Particles /></div>}
+      {theme === 'dark' && <AnimatedBackground />}
+      {theme === 'dark' && <Particles />}
       
       <div className={`absolute inset-0 ${theme === 'dark' ? 'bg-[radial-gradient(circle_at_center,transparent_0%,#050505_70%)]' : 'bg-[radial-gradient(circle_at_center,transparent_0%,#f1f5f9_70%)]'}`} />
       
-      <motion.div 
+      <div 
         className="relative z-10 px-6 max-w-6xl mx-auto w-full overflow-visible"
       >
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center min-h-[calc(100vh-80px)] md:min-h-screen py-8 md:py-24">
           {/* Left Side - Text */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+          <div
             className="text-center md:text-left"
           >
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.1, type: 'spring', stiffness: 200, damping: 20 }}
+            <div
               className={`inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 ${theme === 'dark' ? 'glass' : 'bg-white shadow-lg border border-gray-200'}`}
             >
               <Sparkles className={`w-4 h-4 ${theme === 'dark' ? 'text-gradient-sunset' : 'text-orange-500'}`} />
               <span className={`text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-800 font-medium'}`}>Available for opportunities</span>
-            </motion.div>
+            </div>
 
-            <motion.h1 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
+            <h1 
               className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4"
             >
               <span className={theme === 'dark' ? 'text-white' : 'text-gray-900'}>Hi, I'm </span>
               <span className={`block mt-2 ${theme === 'dark' ? 'text-gradient-sunset' : 'text-blue-600'}`}>{resumeData.name}</span>
-            </motion.h1>
+            </h1>
 
-            <motion.p 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
+            <p 
               className={`text-lg md:text-2xl mb-5 font-medium ${theme === 'dark' ? 'text-gray-300' : 'text-gray-800'}`}
             >
               {resumeData.title} | Helping Businesses Make Data-Driven Decisions <span className="text-primary"></span>
-            </motion.p>
+            </p>
 
-            <motion.p 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
+            <p 
               className={`mb-6 max-w-lg font-medium ${theme === 'dark' ? 'text-gray-400' : 'text-gray-700'}`}
             >
               {resumeData.summary}
-            </motion.p>
+            </p>
 
             {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
+            <div
               className="flex flex-wrap gap-4 justify-center md:justify-start"
             >
               <a href="#contact" className="px-8 py-3 bg-gradient-to-r from-vibrant-pink to-vibrant-purple rounded-full font-semibold hover:opacity-90 transition-opacity glow-rainbow">
@@ -391,20 +372,16 @@ function Hero({ theme }: { theme: string }) {
               <a href="#projects" className={`px-8 py-3 border rounded-full font-semibold transition-colors ${theme === 'dark' ? 'border-vibrant-cyan text-vibrant-cyan hover:bg-vibrant-cyan/10' : 'border-blue-500 text-blue-600 hover:bg-blue-50'}`}>
                 View Projects
               </a>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           {/* Right Side - Photo */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3, type: 'spring', stiffness: 200, damping: 20 }}
+          <div
             className="flex justify-center mt-6 md:mt-0"
           >
             <div className="relative">
-              {/* Simplified glow for mobile */}
-              <div className={`absolute inset-0 rounded-full blur-xl opacity-50 ${theme === 'dark' ? 'bg-gradient-to-br from-vibrant-pink via-vibrant-purple to-vibrant-cyan animate-pulse' : 'bg-gradient-to-br from-blue-400 via-indigo-500 to-purple-500'}`} />
-              <div className={`relative w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 ${theme === 'dark' ? 'border-white/10' : 'border-gray-200'} glow-rainbow`}>
+              <div className={`absolute inset-0 rounded-full blur-xl opacity-50 ${theme === 'dark' ? 'bg-gradient-to-br from-vibrant-pink via-vibrant-purple to-vibrant-cyan' : 'bg-gradient-to-br from-blue-400 via-indigo-500 to-purple-500'}`} />
+              <div className={`relative w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 ${theme === 'dark' ? 'border-white/10' : 'border-gray-200'}`}>
                 <img 
                   src="/photo.jpeg" 
                   alt={resumeData.name} 
@@ -412,9 +389,9 @@ function Hero({ theme }: { theme: string }) {
                 />
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   )
 }
