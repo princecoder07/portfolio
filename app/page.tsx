@@ -43,7 +43,7 @@ const resumeData = {
     linkedin: "www.linkedin.com/in/prince-kumar-08b321258/"
   },
   skills: {
-    programming: ["SQL", "Python"],
+    programming: ["SQL", "Python."],
     visualization: ["Advanced MS Excel", "Power BI", "Tableau"],
     analytical: ["Data Cleaning", "EDA", "Insight Generation", "Descriptive Statistics"]
   },
