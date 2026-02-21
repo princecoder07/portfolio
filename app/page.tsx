@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { 
   Database, 
   Code2, 
@@ -321,21 +321,17 @@ function Navigation({ theme, setTheme }: { theme: string, setTheme: (theme: stri
 
 // Hero Section
 function Hero({ theme }: { theme: string }) {
-  const { scrollY } = useScroll()
-  const y = useTransform(scrollY, [0, 500], [0, 200])
-
   return (
-    <section id="home" className="min-h-screen relative overflow-hidden flex items-center justify-center">
+    <section id="home" className="min-h-[calc(100vh-60px)] md:min-h-screen relative overflow-hidden flex items-center justify-center">
       {theme === 'dark' && <AnimatedBackground />}
       {theme === 'dark' && <Particles />}
       
       <div className={`absolute inset-0 ${theme === 'dark' ? 'bg-[radial-gradient(circle_at_center,transparent_0%,#050505_70%)]' : 'bg-[radial-gradient(circle_at_center,transparent_0%,#f1f5f9_70%)]'}`} />
       
       <motion.div 
-        style={{ y }}
-        className="relative z-10 px-6 max-w-6xl mx-auto w-full"
+        className="relative z-10 px-6 max-w-6xl mx-auto w-full overflow-visible"
       >
-        <div className="grid md:grid-cols-2 gap-12 items-center min-h-screen py-24">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center min-h-[calc(100vh-80px)] md:min-h-screen py-12 md:py-24">
           {/* Left Side - Text */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -402,11 +398,11 @@ function Hero({ theme }: { theme: string }) {
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, type: 'spring', stiffness: 200, damping: 20 }}
-            className="flex justify-center"
+            className="flex justify-center mt-8 md:mt-0"
           >
             <div className="relative">
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-vibrant-pink via-vibrant-purple to-vibrant-cyan blur-xl opacity-50 animate-pulse" />
-              <div className={`relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 ${theme === 'dark' ? 'border-white/10' : 'border-gray-200'} glow-rainbow`}>
+              <div className={`relative w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 ${theme === 'dark' ? 'border-white/10' : 'border-gray-200'} glow-rainbow`}>
                 <img 
                   src="/photo.jpeg" 
                   alt={resumeData.name} 
@@ -665,7 +661,7 @@ function Skills({ theme }: { theme: string }) {
 // Experience Section
 function Experience({ theme }: { theme: string }) {
   return (
-    <section id="experience" className={`min-h-screen py-32 relative ${theme === 'dark' ? '' : 'bg-gray-50'}`}>
+    <section id="experience" className={`min-h-auto md:min-h-screen py-20 md:py-32 relative ${theme === 'dark' ? '' : 'bg-gray-50'}`}>
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -723,7 +719,7 @@ function Experience({ theme }: { theme: string }) {
 // Projects Section
 function Projects({ theme, selectedCert, setSelectedCert }: { theme: string, selectedCert: string | null, setSelectedCert: (cert: string | null) => void }) {
   return (
-    <section id="projects" className={`min-h-screen py-32 relative ${theme === 'dark' ? '' : 'bg-gray-50'}`}>
+    <section id="projects" className={`min-h-auto md:min-h-screen py-20 md:py-32 relative ${theme === 'dark' ? '' : 'bg-gray-50'}`}>
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
         <motion.div
@@ -845,7 +841,7 @@ function Education({ theme, selectedCert, setSelectedCert }: { theme: string, se
   }
 
   return (
-    <section id="education" className={`min-h-screen py-20 relative overflow-hidden ${theme === 'dark' ? '' : 'bg-gray-50'}`}>
+    <section id="education" className={`min-h-auto md:min-h-screen py-16 md:py-20 relative overflow-hidden ${theme === 'dark' ? '' : 'bg-gray-50'}`}>
       {/* Background Effects */}
       {theme === 'dark' && (
         <div className="absolute inset-0 pointer-events-none">
@@ -874,7 +870,7 @@ function Education({ theme, selectedCert, setSelectedCert }: { theme: string, se
             <span className={`text-xs ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>Academic Journey</span>
           </motion.div>
           <h2 className={`text-3xl md:text-4xl font-bold mb-3 ${theme === 'dark' ? '' : 'text-gray-800'}`}>
-            <span className="text-gradient">Education</span> & Certifications
+            <span className={theme === 'dark' ? 'text-gradient' : 'text-blue-600'}>Education</span> & Certifications
           </h2>
           <p className="text-gray-500 text-sm max-w-md mx-auto">
             Building a strong foundation for data-driven decision making
@@ -961,16 +957,16 @@ function Education({ theme, selectedCert, setSelectedCert }: { theme: string, se
         >
           {/* Section Header */}
           <div className="flex items-center justify-center gap-4 mb-8">
-            <div className="h-px w-16 bg-gradient-to-r from-transparent to-cyan-500" />
-            <h3 className="text-2xl font-bold text-white flex items-center gap-3">
-              <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className={`h-px w-16 bg-gradient-to-r from-transparent ${theme === 'dark' ? 'to-cyan-500' : 'to-gray-400'}`} />
+            <h3 className={`text-2xl font-bold flex items-center gap-3 ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}>
+              <span className={`w-10 h-10 rounded-xl bg-gradient-to-br flex items-center justify-center ${theme === 'dark' ? 'from-cyan-500 to-blue-600' : 'from-blue-500 to-indigo-600'}`}>
+                <svg className={`w-5 h-5 ${theme === 'dark' ? 'text-white' : 'text-white'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                 </svg>
               </span>
               Professional Certifications
             </h3>
-            <div className="h-px w-16 bg-gradient-to-l from-transparent to-purple-500" />
+            <div className={`h-px w-16 bg-gradient-to-l from-transparent ${theme === 'dark' ? 'to-purple-500' : 'to-gray-400'}`} />
           </div>
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -985,7 +981,7 @@ function Education({ theme, selectedCert, setSelectedCert }: { theme: string, se
                 className="group relative"
               >
                 {/* Multi-color gradient glow */}
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 rounded-2xl opacity-0 group-hover:opacity-100 blur-lg group-hover:blur-xl transition-all duration-500" />
+                <div className={`absolute -inset-0.5 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 rounded-2xl opacity-0 group-hover:opacity-100 blur-lg group-hover:blur-xl transition-all duration-500 ${theme === 'dark' ? '' : 'opacity-30'}`} />
                 
                 {/* Card */}
                 <div 
@@ -993,7 +989,7 @@ function Education({ theme, selectedCert, setSelectedCert }: { theme: string, se
                   onClick={() => cert.image && setSelectedCert(cert.image)}
                 >
                   {/* Top decorative bar */}
-                  <div className="h-1.5 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600" />
+                  <div className={`h-1.5 bg-gradient-to-r ${theme === 'dark' ? 'from-cyan-400 via-blue-500 to-purple-600' : 'from-blue-400 via-indigo-500 to-purple-500'}`} />
                   
                   {/* Certification Image */}
                   {cert.image && (
@@ -1005,8 +1001,8 @@ function Education({ theme, selectedCert, setSelectedCert }: { theme: string, se
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                       />
                       {/* Badge */}
-                      <div className="absolute top-3 right-3 z-20 bg-white/20 backdrop-blur-md px-2 py-1 rounded-full">
-                        <span className="text-xs font-medium text-white">Cert</span>
+                      <div className={`absolute top-3 right-3 z-20 backdrop-blur-md px-2 py-1 rounded-full ${theme === 'dark' ? 'bg-white/20' : 'bg-black/20'}`}>
+                        <span className={`text-xs font-medium ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}>Cert</span>
                       </div>
                     </div>
                   )}
@@ -1015,7 +1011,7 @@ function Education({ theme, selectedCert, setSelectedCert }: { theme: string, se
                   <div className="p-4">
                     {/* Organization badge */}
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="px-2 py-0.5 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full text-xs font-medium text-cyan-400 group-hover:text-cyan-300 transition-colors">
+                      <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${theme === 'dark' ? 'bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-400 group-hover:text-cyan-300' : 'bg-gradient-to-r from-blue-500/20 to-indigo-500/20 text-blue-600 group-hover:text-blue-700'} transition-colors`}>
                         {cert.org.length > 30 ? cert.org.substring(0, 30) + '...' : cert.org}
                       </span>
                     </div>
@@ -1042,7 +1038,7 @@ function Education({ theme, selectedCert, setSelectedCert }: { theme: string, se
                     )}
                     
                     {/* View Certificate button */}
-                    <div className="mt-3 flex items-center gap-2 text-sm font-medium text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className={`mt-3 flex items-center gap-2 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity ${theme === 'dark' ? 'text-cyan-400' : 'text-blue-600'}`}>
                       <span>View Certificate</span>
                       <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -1076,7 +1072,7 @@ function Education({ theme, selectedCert, setSelectedCert }: { theme: string, se
 // Contact Section
 function Contact({ theme }: { theme: string }) {
   return (
-    <section id="contact" className={`min-h-screen py-32 relative ${theme === 'dark' ? '' : 'bg-gray-50'}`}>
+    <section id="contact" className={`min-h-auto md:min-h-screen py-20 md:py-32 relative ${theme === 'dark' ? '' : 'bg-gray-50'}`}>
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
