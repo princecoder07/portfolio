@@ -210,7 +210,9 @@ function Navigation({ theme, setTheme }: { theme: string, setTheme: (theme: stri
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? (theme === 'dark' ? 'bg-dark/80 backdrop-blur-md' : 'bg-white/80 backdrop-blur-md shadow-lg') : ''
+        isScrolled 
+          ? (theme === 'dark' ? 'bg-[#0f172a]/95 backdrop-blur-md shadow-lg' : 'bg-white/95 backdrop-blur-md shadow-lg')
+          : (theme === 'dark' ? 'bg-[#0f172a]' : 'bg-white')
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4">
@@ -290,23 +292,25 @@ function Navigation({ theme, setTheme }: { theme: string, setTheme: (theme: stri
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden mt-4 pb-4"
+              className={`md:hidden mt-4 pb-4 rounded-lg ${theme === 'dark' ? 'bg-[#0f172a]' : 'bg-gray-100'}`}
             >
-              {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className={`block py-2 ${theme === 'dark' ? 'text-gray-300 hover:text-white' : 'text-gray-700 hover:text-black'}`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
-              ))}
+              <div className="py-2">
+                {navItems.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className={`block py-3 px-2 ${theme === 'dark' ? 'text-gray-300 hover:text-white hover:bg-gray-800' : 'text-gray-700 hover:text-black hover:bg-gray-200'} rounded-md transition-colors`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </div>
               {/* Mobile Resume Download */}
               <a 
                 href="/Prince kumar resume.pdf" 
                 download="Prince_Kumar_Resume.pdf"
-                className={`block py-2 mt-2 ${theme === 'dark' ? 'text-vibrant-pink font-semibold' : 'text-blue-500 font-semibold'}`}
+                className={`block py-3 px-2 mt-2 ${theme === 'dark' ? 'text-vibrant-pink font-semibold hover:bg-gray-800' : 'text-blue-500 font-semibold hover:bg-gray-200'} rounded-md transition-colors`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Download Resume
@@ -322,7 +326,7 @@ function Navigation({ theme, setTheme }: { theme: string, setTheme: (theme: stri
 // Hero Section
 function Hero({ theme }: { theme: string }) {
   return (
-    <section id="home" className="min-h-screen relative overflow-hidden flex items-center justify-center">
+    <section id="home" className="min-h-screen relative overflow-hidden flex items-center justify-center pt-20 md:pt-24">
       {/* Background - only on desktop for dark theme */}
       {theme === 'dark' && <div className="hidden md:block"><AnimatedBackground /></div>}
       {theme === 'dark' && <div className="hidden md:block"><Particles /></div>}
@@ -1167,7 +1171,8 @@ export default function Home() {
   const [selectedCert, setSelectedCert] = useState<string | null>(null)
 
   return (
-    <main className={`${theme === 'dark' ? 'bg-dark' : 'bg-light'} min-h-screen relative transition-colors duration-500`}>
+    <>
+    <main className={`${theme === 'dark' ? 'bg-dark' : 'bg-light'} min-h-screen relative transition-colors duration-500 h-full`}>
       <div className={theme === 'dark' ? 'bg-orbs' : ''}>
         <AnimatedBackground />
       </div>
@@ -1214,5 +1219,6 @@ export default function Home() {
         )}
       </AnimatePresence>
     </main>
+    </>
   )
 }
