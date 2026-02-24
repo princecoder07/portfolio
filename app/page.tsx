@@ -1167,7 +1167,7 @@ function Contact({ theme }: { theme: string }) {
 
 // Main Page Component
 export default function Home() {
-  const [theme, setTheme] = useState('dark')
+  const [theme, setTheme] = useState('light')
   const [selectedCert, setSelectedCert] = useState<string | null>(null)
 
   return (
